@@ -4,23 +4,25 @@ declare(strict_types=1);
 namespace WPHooks;
 
 /**
- * @phpstan-import-type TagsArray from Tags
- * @phpstan-type DocArray array{
- *   description: string,
- *   long_description: string,
- *   long_description_html: string,
- *   tags: TagsArray,
- * }
+ * @phpstan-type TagsArray array<int, array{
+ *   name: string,
+ *   content: string,
+ *   types?: array<int, string>,
+ *   variable?: string,
+ *   link?: string,
+ *   refers?: string,
+ *   description?: string,
+ * }>
  */
-class Doc {
+class Tags {
 	/**
 	 * @var array
-	 * @phpstan-var DocArray
+	 * @phpstan-var TagsArray
 	 */
 	protected $data;
 
 	/**
-	 * @phpstan-param DocArray $data
+	 * @phpstan-param TagsArray $data
 	 */
 	public static function fromData( array $data ): self {
 		$instance = new self();
@@ -29,7 +31,7 @@ class Doc {
 	}
 
 	/**
-	 * @phpstan-param DocArray $data
+	 * @phpstan-param TagsArray $data
 	 */
 	protected function setData( array $data ): self {
 		$this->data = $data;
