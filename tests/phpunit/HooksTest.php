@@ -23,6 +23,11 @@ final class HooksTest extends TestCase {
 		self::assertInstanceOf( Hooks::class, $instance );
 	}
 
+	public function testErrorThrownWhenFileDoesNotExist(): void {
+		self::expectException( \Exception::class );
+		Hooks::fromFile( __DIR__ . '/missing.json' );
+	}
+
 	/**
 	 * @return array<string, array<int, string>>
 	 */
