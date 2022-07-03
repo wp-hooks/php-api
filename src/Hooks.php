@@ -38,6 +38,16 @@ class Hooks {
 		return $instance->setData( $data );
 	}
 
+	/**
+	 * @return \Generator<int, array>
+	 * @phpstan-return \Generator<int, Hook>
+	 */
+	public function all(): \Generator {
+		foreach ( $this->data as $hook ) {
+			yield Hook::fromData( $hook );
+		}
+	}
+
 	protected static function fromKnownFile( string $file ): self {
 		$contents = file_get_contents( $file );
 

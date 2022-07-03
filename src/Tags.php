@@ -24,6 +24,16 @@ class Tags {
 	}
 
 	/**
+	 * @return \Generator<int, array>
+	 * @phpstan-return \Generator<int, Tag>
+	 */
+	public function all(): \Generator {
+		foreach ( $this->data as $tag ) {
+			yield Tag::fromData( $tag );
+		}
+	}
+
+	/**
 	 * @phpstan-param TagsArray $data
 	 */
 	protected function setData( array $data ): self {
