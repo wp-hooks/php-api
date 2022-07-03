@@ -14,10 +14,24 @@ namespace WPHooks;
  */
 class Doc {
 	/**
-	 * @var array
-	 * @phpstan-var DocArray
+	 * @var string
 	 */
-	protected $data;
+	protected $description;
+
+	/**
+	 * @var string
+	 */
+	protected $long_description;
+
+	/**
+	 * @var string
+	 */
+	protected $long_description_html;
+
+	/**
+	 * @var Tags
+	 */
+	protected $tags;
 
 	/**
 	 * @phpstan-param DocArray $data
@@ -32,7 +46,10 @@ class Doc {
 	 * @phpstan-param DocArray $data
 	 */
 	protected function setData( array $data ): self {
-		$this->data = $data;
+		$this->description = $data['description'];
+		$this->long_description = $data['long_description'];
+		$this->long_description_html = $data['long_description_html'];
+		$this->tags = Tags::fromData( $data['tags'] );
 
 		return $this;
 	}
