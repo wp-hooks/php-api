@@ -8,7 +8,7 @@ use WPHooks\Hooks;
 
 final class HooksTest extends TestCase {
 	/**
-	 * @dataProvider dataCoreTags
+	 * @dataProvider dataCoreVendorPaths
 	 */
 	public function testCanBeCreatedFromVendor( string $directory, string $path ): void {
 		$instance = Hooks::fromVendor( $directory, $path );
@@ -31,7 +31,7 @@ final class HooksTest extends TestCase {
 	/**
 	 * @return array<string, array<int, string>>
 	 */
-	public function dataCoreTags(): array {
+	public function dataCoreVendorPaths(): array {
 		$dir = dirname( __DIR__, 2 );
 		$actions = 'wp-hooks/wordpress-core/hooks/actions.json';
 		$filters = 'wp-hooks/wordpress-core/hooks/filters.json';
