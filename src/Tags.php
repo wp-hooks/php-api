@@ -6,8 +6,9 @@ namespace WPHooks;
 /**
  * @phpstan-import-type TagArray from Tag
  * @phpstan-type TagsArray array<int, TagArray>
+ * @implements \IteratorAggregate<int, Tag>
  */
-class Tags {
+final class Tags implements \Countable, \IteratorAggregate {
 	/**
 	 * @var array<int, Tag>
 	 */
@@ -20,6 +21,17 @@ class Tags {
 		$instance = new self();
 
 		return $instance->setData( $data );
+	}
+
+	public function count(): int {
+		return count( $this->tags );
+	}
+
+	/**
+	 * @return \Traversable<int, Tag>
+	 */
+	public function getIterator(): \Traversable {
+		return new \ArrayIterator( $this->tags );
 	}
 
 	/**

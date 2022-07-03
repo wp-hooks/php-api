@@ -6,8 +6,9 @@ namespace WPHooks;
 /**
  * @phpstan-import-type HookArray from Hook
  * @phpstan-type HooksArray array<int, HookArray>
+ * @implements \IteratorAggregate<int, Hook>
  */
-class Hooks {
+final class Hooks implements \Countable, \IteratorAggregate {
 	/**
 	 * @var array
 	 * @phpstan-var HooksArray
@@ -36,6 +37,19 @@ class Hooks {
 		$instance = new self();
 
 		return $instance->setData( $data );
+	}
+
+	public function count(): int {
+		return count( $this->data );
+	}
+
+	/**
+	 * @return \Generator<int, Hook>
+	 */
+	public function getIterator(): \Generator {
+		foreach ( $this->data as $hook ) {
+			yield Hook::fromData( $hook );
+		}
 	}
 
 	/**
