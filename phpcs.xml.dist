@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<ruleset name="WP Hooks API">
+	<config name="testVersion" value="7.2-"/>
+	<arg name="extensions" value="php"/>
+	<arg value="s"/>
+
+	<exclude-pattern>/vendor/*</exclude-pattern>
+
+	<rule ref="HM">
+		<!-- <exclude name="Generic.Commenting"/> -->
+		<exclude name="HM.Files"/>
+		<!-- <exclude name="HM.Layout.Order"/> -->
+		<!-- <exclude name="HM.Namespaces.NoLeadingSlashOnUse.LeadingSlash"/> -->
+		<!-- <exclude name="PEAR.NamingConventions"/> -->
+		<!-- <exclude name="PSR2R.Namespaces.UnusedUseStatement"/> -->
+		<exclude name="Squiz.Commenting"/>
+		<exclude name="WordPress.Files"/>
+		<!-- <exclude name="WordPress.NamingConventions"/> -->
+	</rule>
+</ruleset>
