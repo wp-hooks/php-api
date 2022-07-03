@@ -14,26 +14,14 @@ namespace WPHooks;
  */
 class Doc {
 	/**
+	 * @use ArrayInterchange<DocArray>
+	 */
+	use ArrayInterchange;
+
+	/**
 	 * @var array
 	 * @phpstan-var DocArray
 	 */
 	protected $data;
 
-	/**
-	 * @phpstan-param DocArray $data
-	 */
-	public static function fromData( array $data ): self {
-		$instance = new self();
-
-		return $instance->setData( $data );
-	}
-
-	/**
-	 * @phpstan-param DocArray $data
-	 */
-	protected function setData( array $data ): self {
-		$this->data = $data;
-
-		return $this;
-	}
 }
