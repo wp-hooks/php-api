@@ -4,25 +4,13 @@ declare(strict_types=1);
 namespace WPHooks;
 
 /**
+ * @phpstan-import-type DocArray from Doc
  * @phpstan-type HookArray array{
  *   name: string,
  *   aliases?: array<int, string>,
  *   file: string,
  *   type: string,
- *   doc: array{
- *     description: string,
- *     long_description: string,
- *     long_description_html: string,
- *     tags: array<int, array{
- *       name: string,
- *       content: string,
- *       types?: array<int, string>,
- *       variable?: string,
- *       link?: string,
- *       refers?: string,
- *       description?: string,
- *     }>,
- *   },
+ *   doc: DocArray,
  *   args: int,
  * }
  */
