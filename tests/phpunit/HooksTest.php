@@ -16,6 +16,14 @@ final class HooksTest extends TestCase {
 	}
 
 	/**
+	 * @dataProvider dataCoreFiles
+	 */
+	public function testCanBeCreatedFromFile( string $file ): void {
+		$instance = Hooks::fromFile( $file );
+		self::assertInstanceOf( Hooks::class, $instance );
+	}
+
+	/**
 	 * @return array<string, array<int, string>>
 	 */
 	public function dataCoreTags(): array {
@@ -31,6 +39,22 @@ final class HooksTest extends TestCase {
 			'filters' => [
 				$dir,
 				$filters,
+			],
+		];
+	}
+
+	/**
+	 * @return array<string, array<int, string>>
+	 */
+	public function dataCoreFiles(): array {
+		$dir = dirname( __DIR__, 2 ) . '/vendor/wp-hooks/wordpress-core/hooks';
+
+		return [
+			'actions' => [
+				"{$dir}/actions.json",
+			],
+			'filters' => [
+				"{$dir}/filters.json",
 			],
 		];
 	}
