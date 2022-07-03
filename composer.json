@@ -58,7 +58,7 @@
 			"phpstan analyze"
 		],
 		"test:phpunit": [
-			"phpunit --testdox"
+			"phpunit --testdox --coverage-html tests/coverage"
 		]
 	}
 }
