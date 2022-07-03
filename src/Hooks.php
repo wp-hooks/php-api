@@ -39,8 +39,7 @@ class Hooks {
 	}
 
 	/**
-	 * @return \Generator<int, array>
-	 * @phpstan-return \Generator<int, Hook>
+	 * @return \Generator<int, Hook>
 	 */
 	public function all(): \Generator {
 		foreach ( $this->data as $hook ) {
