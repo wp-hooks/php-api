@@ -9,10 +9,9 @@ namespace WPHooks;
  */
 class Tags {
 	/**
-	 * @var array
-	 * @phpstan-var TagsArray
+	 * @var array<int, Tag>
 	 */
-	protected $data;
+	protected $tags;
 
 	/**
 	 * @phpstan-param TagsArray $data
@@ -24,20 +23,17 @@ class Tags {
 	}
 
 	/**
-	 * @return \Generator<int, array>
-	 * @phpstan-return \Generator<int, Tag>
+	 * @return array<int, Tag>
 	 */
-	public function all(): \Generator {
-		foreach ( $this->data as $tag ) {
-			yield Tag::fromData( $tag );
-		}
+	public function all(): array {
+		return $this->tags;
 	}
 
 	/**
 	 * @phpstan-param TagsArray $data
 	 */
 	protected function setData( array $data ): self {
-		$this->data = $data;
+		$this->tags = array_map( [ '\\WPHooks\\Tag', 'fromData' ], $data );
 
 		return $this;
 	}

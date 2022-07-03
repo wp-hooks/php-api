@@ -16,10 +16,39 @@ namespace WPHooks;
  */
 class Tag {
 	/**
-	 * @var array
-	 * @phpstan-var TagArray
+	 * @var string
 	 */
-	protected $data;
+	protected $name;
+
+	/**
+	 * @var string
+	 */
+	protected $content;
+
+	/**
+	 * @var ?array<int, string>
+	 */
+	protected $types;
+
+	/**
+	 * @var ?string
+	 */
+	protected $variable;
+
+	/**
+	 * @var ?string
+	 */
+	protected $link;
+
+	/**
+	 * @var ?string
+	 */
+	protected $refers;
+
+	/**
+	 * @var ?string
+	 */
+	protected $description;
 
 	/**
 	 * @phpstan-param TagArray $data
@@ -34,7 +63,13 @@ class Tag {
 	 * @phpstan-param TagArray $data
 	 */
 	protected function setData( array $data ): self {
-		$this->data = $data;
+		$this->name = $data['name'];
+		$this->content = $data['content'];
+		$this->types = $data['types'] ?? null;
+		$this->variable = $data['variable'] ?? null;
+		$this->link = $data['link'] ?? null;
+		$this->refers = $data['refers'] ?? null;
+		$this->description = $data['description'] ?? null;
 
 		return $this;
 	}
