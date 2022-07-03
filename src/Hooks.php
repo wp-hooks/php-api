@@ -73,13 +73,13 @@ class Hooks {
 	}
 
 	protected static function findFileFromVendor( string $directory, string $path ): string {
-		$library_dependency = dirname( $directory ) . '/vendor/' . $path;
+		$library_dependency = $directory . '/vendor/' . $path;
 
 		if ( file_exists( $library_dependency ) ) {
 			return $library_dependency;
 		}
 
-		$project_dependency = dirname( $directory, 3 ) . '/vendor/' . $path;
+		$project_dependency = dirname( $directory, 2 ) . '/vendor/' . $path;
 
 		if ( file_exists( $project_dependency ) ) {
 			return $project_dependency;
