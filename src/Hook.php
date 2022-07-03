@@ -16,10 +16,34 @@ namespace WPHooks;
  */
 class Hook {
 	/**
-	 * @var array
-	 * @phpstan-var HookArray
+	 * @var string
 	 */
-	protected $data;
+	protected $name;
+
+	/**
+	 * @var ?array<int, string>
+	 */
+	protected $aliases;
+
+	/**
+	 * @var string
+	 */
+	protected $file;
+
+	/**
+	 * @var string
+	 */
+	protected $type;
+
+	/**
+	 * @var Doc
+	 */
+	protected $doc;
+
+	/**
+	 * @var int
+	 */
+	protected $args;
 
 	/**
 	 * @phpstan-param HookArray $data
@@ -34,7 +58,12 @@ class Hook {
 	 * @phpstan-param HookArray $data
 	 */
 	protected function setData( array $data ): self {
-		$this->data = $data;
+		$this->name = $data['name'];
+		$this->aliases = $data['aliases'] ?? null;
+		$this->file = $data['file'];
+		$this->type = $data['type'];
+		$this->doc = Doc::fromData( $data['doc'] );
+		$this->args = $data['args'];
 
 		return $this;
 	}
