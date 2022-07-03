@@ -59,6 +59,49 @@ class Tag {
 		return $instance->setData( $data );
 	}
 
+	public function getName(): string {
+		return $this->name;
+	}
+
+	public function getContent(): string {
+		return $this->content;
+	}
+
+	/**
+	 * @return ?array<int, string>
+	 */
+	public function getTypes(): ?array {
+		return $this->types;
+	}
+
+	/**
+	 * @return ?string
+	 */
+	public function getVariable(): ?string {
+		return $this->variable;
+	}
+
+	/**
+	 * @return ?string
+	 */
+	public function getLink(): ?string {
+		return $this->link;
+	}
+
+	/**
+	 * @return ?string
+	 */
+	public function getRefers(): ?string {
+		return $this->refers;
+	}
+
+	/**
+	 * @return ?string
+	 */
+	public function getDescription(): ?string {
+		return $this->description;
+	}
+
 	/**
 	 * @phpstan-param TagArray $data
 	 */

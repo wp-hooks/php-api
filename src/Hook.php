@@ -54,6 +54,33 @@ class Hook {
 		return $instance->setData( $data );
 	}
 
+	public function getName(): string {
+		return $this->name;
+	}
+
+	/**
+	 * @return ?array<int, string>
+	 */
+	public function getAliases(): ?array {
+		return $this->aliases;
+	}
+
+	public function getFile(): string {
+		return $this->file;
+	}
+
+	public function getType(): string {
+		return $this->type;
+	}
+
+	public function getDoc(): Doc {
+		return $this->doc;
+	}
+
+	public function getArgs(): int {
+		return $this->args;
+	}
+
 	/**
 	 * @phpstan-param HookArray $data
 	 */

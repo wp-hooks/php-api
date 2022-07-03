@@ -42,6 +42,22 @@ class Doc {
 		return $instance->setData( $data );
 	}
 
+	public function getDescription(): string {
+		return $this->description;
+	}
+
+	public function getLongDescription(): string {
+		return $this->long_description;
+	}
+
+	public function getLongDescriptionHTML(): string {
+		return $this->long_description_html;
+	}
+
+	public function getTags(): Tags {
+		return $this->tags;
+	}
+
 	/**
 	 * @phpstan-param DocArray $data
 	 */
