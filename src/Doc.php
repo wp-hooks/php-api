@@ -12,7 +12,7 @@ namespace WPHooks;
  *   tags: TagsArray,
  * }
  */
-class Doc {
+final class Doc {
 	/**
 	 * @var string
 	 */

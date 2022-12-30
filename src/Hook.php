@@ -14,7 +14,7 @@ namespace WPHooks;
  *   args: int,
  * }
  */
-class Hook {
+final class Hook {
 	/**
 	 * @var string
 	 */

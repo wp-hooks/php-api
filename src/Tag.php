@@ -14,7 +14,7 @@ namespace WPHooks;
  *   description?: string,
  * }
  */
-class Tag {
+final class Tag {
 	/**
 	 * @var string
 	 */
