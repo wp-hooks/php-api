@@ -11,16 +11,16 @@ final class HooksTest extends TestCase {
 	 * @dataProvider dataCoreVendorPaths
 	 */
 	public function testCanBeCreatedFromVendor( string $directory, string $path ): void {
-		$instance = Hooks::fromVendor( $directory, $path );
-		self::assertInstanceOf( Hooks::class, $instance );
+		self::expectNotToPerformAssertions();
+		Hooks::fromVendor( $directory, $path );
 	}
 
 	/**
 	 * @dataProvider dataCoreFiles
 	 */
 	public function testCanBeCreatedFromFile( string $file ): void {
-		$instance = Hooks::fromFile( $file );
-		self::assertInstanceOf( Hooks::class, $instance );
+		self::expectNotToPerformAssertions();
+		Hooks::fromFile( $file );
 	}
 
 	public function testErrorThrownWhenFileDoesNotExist(): void {
