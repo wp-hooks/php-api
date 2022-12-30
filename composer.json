@@ -1,5 +1,5 @@
 {
-	"name": "wp-hooks/api",
+	"name": "wp-hooks/php-api",
 	"description": "A PHP API for interacting with wp-hooks definitions",
 	"license": "GPL-3.0-or-later",
 	"type": "library",

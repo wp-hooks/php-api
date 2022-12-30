@@ -13,5 +13,5 @@ Work in progress. Don't use this.
 ## Installation
 
 ```shell
-composer require wp-hooks/api
+composer require wp-hooks/php-api
 ```
