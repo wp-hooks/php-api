@@ -15,25 +15,29 @@ jobs:
   build:
     strategy:
       matrix:
-        php: ['7.2', '7.4', '8.0', '8.1']
+        php: ['7.2', '8.2']
       fail-fast: false
-    name: Unit tests
-    runs-on: ubuntu-18.04
+    name: Tests
+    runs-on: ubuntu-latest
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
 
     - name: Install PHP
-      uses: shivammathur/setup-php@2.19.1
+      uses: shivammathur/setup-php@v2
       with:
         php-version: ${{ matrix.php }}
+        tools: composer:v2
         ini-file: development
         coverage: none
+      env:
+        fail-fast: true
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Get Composer Cache Directory
       id: composer-cache-dir
       run: |
-        echo "::set-output name=dir::$(composer config cache-files-dir)"
+        echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
 
     - name: Cache PHP Dependencies
       id: composer-cache
@@ -48,4 +52,4 @@ jobs:
 
     - name: Run the tests
       run: |
-        composer test:phpunit
+        composer test
