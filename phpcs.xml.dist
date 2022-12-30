@@ -4,17 +4,19 @@
 	<arg name="extensions" value="php"/>
 	<arg value="s"/>
 
+	<!--
+	Prevent deprecated errors caused by WordPress Coding Standards not supporting PHP 8.0+.
+	See https://github.com/WordPress/WordPress-Coding-Standards/issues/2035
+	-->
+	<ini name="error_reporting" value="E_ALL &#38; ~E_DEPRECATED" />
+
 	<exclude-pattern>/vendor/*</exclude-pattern>
 
 	<rule ref="HM">
-		<!-- <exclude name="Generic.Commenting"/> -->
+		<exclude name="Generic.Commenting"/>
 		<exclude name="HM.Files"/>
-		<!-- <exclude name="HM.Layout.Order"/> -->
-		<!-- <exclude name="HM.Namespaces.NoLeadingSlashOnUse.LeadingSlash"/> -->
-		<!-- <exclude name="PEAR.NamingConventions"/> -->
-		<!-- <exclude name="PSR2R.Namespaces.UnusedUseStatement"/> -->
 		<exclude name="Squiz.Commenting"/>
 		<exclude name="WordPress.Files"/>
-		<!-- <exclude name="WordPress.NamingConventions"/> -->
+		<exclude name="WordPress.NamingConventions"/>
 	</rule>
 </ruleset>
