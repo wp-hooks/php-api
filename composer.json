@@ -52,7 +52,7 @@
 			"@test:phpstan"
 		],
 		"test:phpcs": [
-			"phpcs -p -d error_reporting=24575 --cache=tests/cache/phpcs.json --basepath='./' ."
+			"phpcs -p --cache=tests/cache/phpcs.json --basepath='./' ."
 		],
 		"test:phpstan": [
 			"phpstan analyze"
