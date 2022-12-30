@@ -19,6 +19,9 @@ final class Hooks implements \Countable, \IteratorAggregate {
 		return self::fromKnownFile( self::findFileFromVendor( $directory, $file ) );
 	}
 
+	/**
+	 * @throws \Exception
+	 */
 	public static function fromFile( string $file ): self {
 		if ( ! file_exists( $file ) ) {
 			throw new \Exception( sprintf(
@@ -61,6 +64,9 @@ final class Hooks implements \Countable, \IteratorAggregate {
 		}
 	}
 
+	/**
+	 * @throws \Exception
+	 */
 	protected static function fromKnownFile( string $file ): self {
 		$contents = file_get_contents( $file );
 
@@ -85,6 +91,9 @@ final class Hooks implements \Countable, \IteratorAggregate {
 		return self::fromData( $hooks );
 	}
 
+	/**
+	 * @throws \Exception
+	 */
 	protected static function findFileFromVendor( string $directory, string $path ): string {
 		$library_dependency = $directory . '/vendor/' . $path;
 
