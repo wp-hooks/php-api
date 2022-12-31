@@ -5,11 +5,12 @@ namespace WPHooks;
 
 /**
  * @phpstan-import-type DocArray from Doc
+ * @phpstan-type HookType 'action'|'filter'|'action_reference'|'filter_reference'
  * @phpstan-type HookArray array{
  *   name: string,
- *   aliases?: array<int, string>,
+ *   aliases?: list<string>,
  *   file: string,
- *   type: string,
+ *   type: HookType,
  *   doc: DocArray,
  *   args: int,
  * }
@@ -32,6 +33,7 @@ final class Hook {
 
 	/**
 	 * @var string
+	 * @phpstan-var HookType
 	 */
 	protected $type;
 
