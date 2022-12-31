@@ -84,6 +84,13 @@ final class Hook {
 	}
 
 	/**
+	 * @return \Generator<int, Tag>
+	 */
+	public function getParams(): \Generator {
+		yield from $this->getDoc()->getTags()->getParams();
+	}
+
+	/**
 	 * @phpstan-param HookArray $data
 	 */
 	protected function setData( array $data ): self {
