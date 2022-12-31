@@ -5,7 +5,7 @@ namespace WPHooks;
 
 /**
  * @phpstan-import-type HookArray from Hook
- * @phpstan-type HooksArray array<int, HookArray>
+ * @phpstan-type HooksArray list<HookArray>
  * @implements \IteratorAggregate<int, Hook>
  */
 final class Hooks implements \Countable, \IteratorAggregate {
@@ -56,12 +56,44 @@ final class Hooks implements \Countable, \IteratorAggregate {
 	}
 
 	/**
+	 * @return array<int, Hook>
+	 */
+	public function all(): array {
+		return iterator_to_array( $this );
+	}
+
+	/**
 	 * @return \Generator<int, Hook>
 	 */
-	public function all(): \Generator {
+	public function filter( string $search ): \Generator {
 		foreach ( $this->data as $hook ) {
-			yield Hook::fromData( $hook );
+			if ( strpos( $hook['name'], $search ) !== false ) {
+				yield Hook::fromData( $hook );
+			}
 		}
+	}
+
+	/**
+	 * @return ?Hook
+	 */
+	public function find( string $name ): ?Hook {
+		foreach ( $this->data as $hook ) {
+			if ( $hook['name'] === $name ) {
+				return Hook::fromData( $hook );
+			}
+		}
+
+		return null;
+	}
+
+	public function includes( string $name ): bool {
+		foreach ( $this->data as $hook ) {
+			if ( $hook['name'] === $name ) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	/**

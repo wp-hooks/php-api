@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace WPHooks\Tests;
 
 use PHPUnit\Framework\TestCase;
+use WPHooks\Hook;
 use WPHooks\Hooks;
 
 final class HooksTest extends TestCase {
@@ -26,6 +27,27 @@ final class HooksTest extends TestCase {
 	public function testErrorThrownWhenFileDoesNotExist(): void {
 		self::expectException( \Exception::class );
 		Hooks::fromFile( __DIR__ . '/missing.json' );
+	}
+
+	public function testCanFindByName(): void {
+		$file = $this->dataCoreFiles()['filters'][0];
+		$filters = Hooks::fromFile( $file );
+		$hook = $filters->find( 'wp_tag_cloud' );
+		$includes = $filters->includes( 'wp_tag_cloud' );
+
+		self::assertTrue( $includes );
+		self::assertInstanceOf( Hook::class, $hook );
+		self::assertSame( 'wp_tag_cloud', $hook->getName() );
+	}
+
+	public function testFindByUnknownNameReturnsNull(): void {
+		$file = $this->dataCoreFiles()['filters'][0];
+		$filters = Hooks::fromFile( $file );
+		$hook = $filters->find( 'this_does_not_exist' );
+		$includes = $filters->includes( 'this_does_not_exist' );
+
+		self::assertFalse( $includes );
+		self::assertNull( $hook );
 	}
 
 	/**
