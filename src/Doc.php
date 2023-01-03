@@ -59,6 +59,13 @@ final class Doc {
 	}
 
 	/**
+	 * @return array<int, Tag>
+	 */
+	public function getParams(): array {
+		return $this->getTags()->getParams();
+	}
+
+	/**
 	 * @phpstan-param DocArray $data
 	 */
 	protected function setData( array $data ): self {

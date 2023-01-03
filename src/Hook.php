@@ -87,7 +87,7 @@ final class Hook {
 	 * @return array<int, Tag>
 	 */
 	public function getParams(): array {
-		return $this->getDoc()->getTags()->getParams();
+		return $this->getDoc()->getParams();
 	}
 
 	/**
