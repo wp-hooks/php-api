@@ -60,6 +60,7 @@ final class Doc {
 
 	/**
 	 * @return array<int, Tag>
+	 * @phpstan-return list<Tag>
 	 */
 	public function getParams(): array {
 		return $this->getTags()->getParams();

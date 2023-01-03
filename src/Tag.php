@@ -7,7 +7,7 @@ namespace WPHooks;
  * @phpstan-type TagArray array{
  *   name: string,
  *   content: string,
- *   types?: array<int, string>,
+ *   types?: list<string>,
  *   variable?: string,
  *   link?: string,
  *   refers?: string,
@@ -27,6 +27,7 @@ final class Tag {
 
 	/**
 	 * @var ?array<int, string>
+	 * @phpstan-var ?list<string>
 	 */
 	protected $types;
 

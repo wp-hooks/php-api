@@ -57,6 +57,7 @@ final class Hooks implements \Countable, \IteratorAggregate {
 
 	/**
 	 * @return array<int, Hook>
+	 * @phpstan-return list<Hook>
 	 */
 	public function all(): array {
 		return iterator_to_array( $this );
@@ -64,6 +65,7 @@ final class Hooks implements \Countable, \IteratorAggregate {
 
 	/**
 	 * @return array<int, Hook>
+	 * @phpstan-return list<Hook>
 	 */
 	public function filter( string $search ): array {
 		$hooks = [];

@@ -52,6 +52,10 @@ final class HooksTest extends TestCase {
 
 	/**
 	 * @return array<string, array<int, string>>
+	 * @phpstan-return array{
+	 *   actions: list<string>,
+	 *   filters: list<string>,
+	 * }
 	 */
 	public function dataCoreVendorPaths(): array {
 		$dir = dirname( __DIR__, 2 );
@@ -72,6 +76,10 @@ final class HooksTest extends TestCase {
 
 	/**
 	 * @return array<string, array<int, string>>
+	 * @phpstan-return array{
+	 *   actions: list<string>,
+	 *   filters: list<string>,
+	 * }
 	 */
 	public function dataCoreFiles(): array {
 		$dir = dirname( __DIR__, 2 ) . '/vendor/wp-hooks/wordpress-core/hooks';

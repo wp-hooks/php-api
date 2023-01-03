@@ -85,6 +85,7 @@ final class Hook {
 
 	/**
 	 * @return array<int, Tag>
+	 * @phpstan-return list<Tag>
 	 */
 	public function getParams(): array {
 		return $this->getDoc()->getParams();

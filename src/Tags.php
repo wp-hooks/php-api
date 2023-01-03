@@ -11,6 +11,7 @@ namespace WPHooks;
 final class Tags implements \Countable, \IteratorAggregate {
 	/**
 	 * @var array<int, Tag>
+	 * @phpstan-var list<Tag>
 	 */
 	protected $tags;
 
@@ -36,6 +37,7 @@ final class Tags implements \Countable, \IteratorAggregate {
 
 	/**
 	 * @return array<int, Tag>
+	 * @phpstan-return list<Tag>
 	 */
 	public function all(): array {
 		return iterator_to_array( $this );
@@ -43,6 +45,7 @@ final class Tags implements \Countable, \IteratorAggregate {
 
 	/**
 	 * @return array<int, Tag>
+	 * @phpstan-return list<Tag>
 	 */
 	public function getParams(): array {
 		$params = [];
