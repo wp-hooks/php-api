@@ -84,10 +84,10 @@ final class Hook {
 	}
 
 	/**
-	 * @return \Generator<int, Tag>
+	 * @return array<int, Tag>
 	 */
-	public function getParams(): \Generator {
-		yield from $this->getDoc()->getTags()->getParams();
+	public function getParams(): array {
+		return $this->getDoc()->getTags()->getParams();
 	}
 
 	/**

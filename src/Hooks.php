@@ -63,14 +63,18 @@ final class Hooks implements \Countable, \IteratorAggregate {
 	}
 
 	/**
-	 * @return \Generator<int, Hook>
+	 * @return array<int, Hook>
 	 */
-	public function filter( string $search ): \Generator {
+	public function filter( string $search ): array {
+		$hooks = [];
+
 		foreach ( $this->data as $hook ) {
 			if ( strpos( $hook['name'], $search ) !== false ) {
-				yield Hook::fromData( $hook );
+				$hooks[] = Hook::fromData( $hook );
 			}
 		}
+
+		return $hooks;
 	}
 
 	/**

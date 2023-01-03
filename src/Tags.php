@@ -42,14 +42,18 @@ final class Tags implements \Countable, \IteratorAggregate {
 	}
 
 	/**
-	 * @return \Generator<int, Tag>
+	 * @return array<int, Tag>
 	 */
-	public function getParams(): \Generator {
+	public function getParams(): array {
+		$params = [];
+
 		foreach ( $this as $tag ) {
 			if ( $tag->getName() === 'param' ) {
-				yield $tag;
+				$params[] = $tag;
 			}
 		}
+
+		return $params;
 	}
 
 	/**
