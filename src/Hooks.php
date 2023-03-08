@@ -3,6 +3,9 @@ declare(strict_types=1);
 
 namespace WPHooks;
 
+use Composer\Autoload\ClassLoader;
+use ReflectionClass;
+
 /**
  * @phpstan-import-type HookArray from Hook
  * @phpstan-type HooksArray list<HookArray>
@@ -150,6 +153,30 @@ final class Hooks implements \Countable, \IteratorAggregate {
 			$path
 		) );
 	}
+
+    /**
+     * @throws \RuntimeException
+     */
+    public static function getVendorPath(): string {
+        static $cache;
+
+        if (is_string($cache)) {
+            return $cache;
+        }
+
+        $reflector = new ReflectionClass(ClassLoader::class);
+        $classLoaderPath = $reflector->getFileName();
+        if ($classLoaderPath === false) {
+            throw new \RuntimeException('Unable to find Composer ClassLoader file.');
+        }
+
+        $vendorPath = dirname($classLoaderPath, 2);
+        if (!is_dir($vendorPath)) {
+            throw new \RuntimeException('Unable to detect vendor path.');
+        }
+
+        return $cache = $vendorPath;
+    }
 
 	/**
 	 * @phpstan-param HooksArray $data
