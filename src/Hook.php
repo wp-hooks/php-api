@@ -23,6 +23,7 @@ final class Hook {
 
 	/**
 	 * @var ?array<int, string>
+	 * @phpstan-var ?list<string>
 	 */
 	protected $aliases;
 
@@ -62,6 +63,7 @@ final class Hook {
 
 	/**
 	 * @return ?array<int, string>
+	 * @phpstan-return ?list<string>
 	 */
 	public function getAliases(): ?array {
 		return $this->aliases;

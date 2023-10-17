@@ -70,6 +70,7 @@ final class Tag {
 
 	/**
 	 * @return ?array<int, string>
+	 * @phpstan-return ?list<string>
 	 */
 	public function getTypes(): ?array {
 		return $this->types;

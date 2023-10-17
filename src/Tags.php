@@ -5,7 +5,7 @@ namespace WPHooks;
 
 /**
  * @phpstan-import-type TagArray from Tag
- * @phpstan-type TagsArray array<int, TagArray>
+ * @phpstan-type TagsArray list<TagArray>
  * @implements \IteratorAggregate<int, Tag>
  */
 final class Tags implements \Countable, \IteratorAggregate {
