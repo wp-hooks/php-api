@@ -19,34 +19,34 @@ final class Hook {
 	/**
 	 * @var string
 	 */
-	protected $name;
+	private $name;
 
 	/**
 	 * @var ?array<int, string>
 	 * @phpstan-var ?list<string>
 	 */
-	protected $aliases;
+	private $aliases;
 
 	/**
 	 * @var string
 	 */
-	protected $file;
+	private $file;
 
 	/**
 	 * @var string
 	 * @phpstan-var HookType
 	 */
-	protected $type;
+	private $type;
 
 	/**
 	 * @var Doc
 	 */
-	protected $doc;
+	private $doc;
 
 	/**
 	 * @var int
 	 */
-	protected $args;
+	private $args;
 
 	/**
 	 * @phpstan-param HookArray $data
@@ -96,7 +96,7 @@ final class Hook {
 	/**
 	 * @phpstan-param HookArray $data
 	 */
-	protected function setData( array $data ): self {
+	private function setData( array $data ): self {
 		$this->name = $data['name'];
 		$this->aliases = $data['aliases'] ?? null;
 		$this->file = $data['file'];

@@ -16,22 +16,22 @@ final class Doc {
 	/**
 	 * @var string
 	 */
-	protected $description;
+	private $description;
 
 	/**
 	 * @var string
 	 */
-	protected $long_description;
+	private $long_description;
 
 	/**
 	 * @var string
 	 */
-	protected $long_description_html;
+	private $long_description_html;
 
 	/**
 	 * @var Tags
 	 */
-	protected $tags;
+	private $tags;
 
 	/**
 	 * @phpstan-param DocArray $data
@@ -69,7 +69,7 @@ final class Doc {
 	/**
 	 * @phpstan-param DocArray $data
 	 */
-	protected function setData( array $data ): self {
+	private function setData( array $data ): self {
 		$this->description = $data['description'];
 		$this->long_description = $data['long_description'];
 		$this->long_description_html = $data['long_description_html'];

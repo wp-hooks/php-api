@@ -18,38 +18,38 @@ final class Tag {
 	/**
 	 * @var string
 	 */
-	protected $name;
+	private $name;
 
 	/**
 	 * @var string
 	 */
-	protected $content;
+	private $content;
 
 	/**
 	 * @var ?array<int, string>
 	 * @phpstan-var ?list<string>
 	 */
-	protected $types;
+	private $types;
 
 	/**
 	 * @var ?string
 	 */
-	protected $variable;
+	private $variable;
 
 	/**
 	 * @var ?string
 	 */
-	protected $link;
+	private $link;
 
 	/**
 	 * @var ?string
 	 */
-	protected $refers;
+	private $refers;
 
 	/**
 	 * @var ?string
 	 */
-	protected $description;
+	private $description;
 
 	/**
 	 * @phpstan-param TagArray $data
@@ -107,7 +107,7 @@ final class Tag {
 	/**
 	 * @phpstan-param TagArray $data
 	 */
-	protected function setData( array $data ): self {
+	private function setData( array $data ): self {
 		$this->name = $data['name'];
 		$this->content = $data['content'];
 		$this->types = $data['types'] ?? null;

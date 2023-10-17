@@ -13,7 +13,7 @@ final class Tags implements \Countable, \IteratorAggregate {
 	 * @var array<int, Tag>
 	 * @phpstan-var list<Tag>
 	 */
-	protected $tags;
+	private $tags;
 
 	/**
 	 * @phpstan-param TagsArray $data
@@ -62,7 +62,7 @@ final class Tags implements \Countable, \IteratorAggregate {
 	/**
 	 * @phpstan-param TagsArray $data
 	 */
-	protected function setData( array $data ): self {
+	private function setData( array $data ): self {
 		$this->tags = array_map( [ '\\WPHooks\\Tag', 'fromData' ], $data );
 
 		return $this;

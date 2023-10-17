@@ -13,7 +13,7 @@ final class Hooks implements \Countable, \IteratorAggregate {
 	 * @var array
 	 * @phpstan-var HooksArray
 	 */
-	protected $data;
+	private $data;
 
 	public static function fromVendor( string $directory, string $file ): self {
 		return self::fromKnownFile( self::findFileFromVendor( $directory, $file ) );
@@ -105,7 +105,7 @@ final class Hooks implements \Countable, \IteratorAggregate {
 	/**
 	 * @throws \Exception
 	 */
-	protected static function fromKnownFile( string $file ): self {
+	private static function fromKnownFile( string $file ): self {
 		$contents = file_get_contents( $file );
 
 		if ( $contents === false ) {
@@ -132,7 +132,7 @@ final class Hooks implements \Countable, \IteratorAggregate {
 	/**
 	 * @throws \Exception
 	 */
-	protected static function findFileFromVendor( string $directory, string $path ): string {
+	private static function findFileFromVendor( string $directory, string $path ): string {
 		$library_dependency = $directory . '/vendor/' . $path;
 
 		if ( file_exists( $library_dependency ) ) {
@@ -154,7 +154,7 @@ final class Hooks implements \Countable, \IteratorAggregate {
 	/**
 	 * @phpstan-param HooksArray $data
 	 */
-	protected function setData( array $data ): self {
+	private function setData( array $data ): self {
 		$this->data = $data;
 
 		return $this;
