@@ -19,7 +19,6 @@
 		"php": ">=7.4"
 	},
 	"require-dev": {
-		"ergebnis/composer-normalize": "^2.0",
 		"ergebnis/phpstan-rules": "^1.0",
 		"humanmade/coding-standards": "^1.1",
 		"phpcompatibility/php-compatibility": "^9.3",
@@ -36,15 +35,11 @@
 	},
 	"config": {
 		"allow-plugins": {
-			"dealerdirect/phpcodesniffer-composer-installer": true,
-			"ergebnis/composer-normalize": true
+			"dealerdirect/phpcodesniffer-composer-installer": true
 		},
 		"sort-packages": true
 	},
 	"scripts": {
-		"post-update-cmd": [
-			"@composer normalize"
-		],
 		"test": [
 			"@test:phpcs",
 			"@test:phpunit",
