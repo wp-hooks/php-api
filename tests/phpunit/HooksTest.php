@@ -6,6 +6,7 @@ namespace WPHooks\Tests;
 use PHPUnit\Framework\TestCase;
 use WPHooks\Hook;
 use WPHooks\Hooks;
+use WPHooks\Tag;
 
 final class HooksTest extends TestCase {
 	/**
@@ -30,10 +31,9 @@ final class HooksTest extends TestCase {
 	}
 
 	public function testCanFindByName(): void {
-		$file = $this->dataCoreFiles()['filters'][0];
-		$filters = Hooks::fromFile( $file );
-		$hook = $filters->find( 'wp_tag_cloud' );
-		$includes = $filters->includes( 'wp_tag_cloud' );
+		$hooks = $this->getFilters();
+		$hook = $hooks->find( 'wp_tag_cloud' );
+		$includes = $hooks->includes( 'wp_tag_cloud' );
 
 		self::assertTrue( $includes );
 		self::assertInstanceOf( Hook::class, $hook );
@@ -41,13 +41,54 @@ final class HooksTest extends TestCase {
 	}
 
 	public function testFindByUnknownNameReturnsNull(): void {
-		$file = $this->dataCoreFiles()['filters'][0];
-		$filters = Hooks::fromFile( $file );
-		$hook = $filters->find( 'this_does_not_exist' );
-		$includes = $filters->includes( 'this_does_not_exist' );
+		$hooks = $this->getFilters();
+		$hook = $hooks->find( 'this_does_not_exist' );
+		$includes = $hooks->includes( 'this_does_not_exist' );
 
 		self::assertFalse( $includes );
 		self::assertNull( $hook );
+	}
+
+	public function testCanGetReturnTypes(): void {
+		$hooks = $this->getFilters();
+		$hook = $hooks->find( 'wp_tag_cloud' );
+
+		$returnTypes = $hook->getDoc()->getReturnTypes();
+		$expected = [
+			'string',
+			'string[]',
+		];
+
+		self::assertSame( $expected, $returnTypes );
+	}
+
+	public function testCanGetReturnTypeString(): void {
+		$hooks = $this->getFilters();
+		$hook = $hooks->find( 'wp_tag_cloud' );
+
+		$returnType = $hook->getDoc()->getReturnTypeString();
+
+		self::assertSame( 'string|string[]', $returnType );
+	}
+
+	public function testCanGetParams(): void {
+		$hooks = $this->getFilters();
+		$hook = $hooks->find( 'wp_tag_cloud' );
+
+		$params = $hook->getDoc()->getParams();
+
+		self::assertCount( 2, $params );
+		self::assertInstanceOf( Tag::class, $params[0] );
+		self::assertInstanceOf( Tag::class, $params[1] );
+	}
+
+	public function testCanCountParams(): void {
+		$hooks = $this->getFilters();
+		$hook = $hooks->find( 'wp_tag_cloud' );
+
+		$count = $hook->getDoc()->countParams();
+
+		self::assertSame( 2, $count );
 	}
 
 	/**
@@ -92,5 +133,13 @@ final class HooksTest extends TestCase {
 				"{$dir}/filters.json",
 			],
 		];
+	}
+
+	private function getFilters(): Hooks {
+		return Hooks::fromFile( $this->dataCoreFiles()['filters'][0] );
+	}
+
+	private function getActions(): Hooks {
+		return Hooks::fromFile( $this->dataCoreFiles()['actions'][0] );
 	}
 }

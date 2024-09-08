@@ -47,8 +47,32 @@ final class Doc {
 	 * @return array<int, Tag>
 	 * @phpstan-return list<Tag>
 	 */
+	public function getTagsByType( string $type ): array {
+		return $this->tags->getByType( $type );
+	}
+
+	/**
+	 * @return array<int, Tag>
+	 * @phpstan-return list<Tag>
+	 */
 	public function getParams(): array {
-		return $this->getTags()->getParams();
+		return $this->tags->getParams();
+	}
+
+	public function getReturnTypeString(): ?string {
+		return $this->tags->getReturnTypeString();
+	}
+
+	/**
+	 * @return ?array<int, string>
+	 * @phpstan-return ?list<string>
+	 */
+	public function getReturnTypes(): ?array {
+		return $this->tags->getReturnTypes();
+	}
+
+	public function countParams(): int {
+		return $this->tags->countParams();
 	}
 
 	/**

@@ -28,6 +28,10 @@ final class Tags implements \Countable, \IteratorAggregate {
 		return count( $this->tags );
 	}
 
+	public function countParams(): int {
+		return count( $this->getParams() );
+	}
+
 	/**
 	 * @return \Traversable<int, Tag>
 	 */
@@ -48,15 +52,47 @@ final class Tags implements \Countable, \IteratorAggregate {
 	 * @phpstan-return list<Tag>
 	 */
 	public function getParams(): array {
-		$params = [];
+		return $this->getByType( 'param' );
+	}
 
-		foreach ( $this as $tag ) {
-			if ( $tag->getName() === 'param' ) {
-				$params[] = $tag;
+	/**
+	 * @return array<int, Tag>
+	 * @phpstan-return list<Tag>
+	 */
+	public function getByType( string $type ): array {
+		$tags = [];
+
+		foreach ( $this->tags as $tag ) {
+			if ( $tag->getName() === $type ) {
+				$tags[] = $tag;
 			}
 		}
 
-		return $params;
+		return $tags;
+	}
+
+	/**
+	 * @return ?array<int, string>
+	 * @phpstan-return ?list<string>
+	 */
+	public function getReturnTypes(): ?array {
+		foreach ( $this->tags as $tag ) {
+			if ( $tag->getName() === 'param' ) {
+				return $tag->getTypes();
+			}
+		}
+
+		return null;
+	}
+
+	public function getReturnTypeString(): ?string {
+		$returnTypes = $this->getReturnTypes();
+
+		if ( $returnTypes === null ) {
+			return null;
+		}
+
+		return implode( '|', $returnTypes );
 	}
 
 	/**
