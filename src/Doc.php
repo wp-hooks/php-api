@@ -59,6 +59,10 @@ final class Doc {
 		return $this->tags->getParams();
 	}
 
+	public function getSince(): string {
+		return $this->tags->getSince();
+	}
+
 	public function getReturnTypeString(): ?string {
 		return $this->tags->getReturnTypeString();
 	}

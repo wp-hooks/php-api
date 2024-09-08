@@ -91,6 +91,15 @@ final class HooksTest extends TestCase {
 		self::assertSame( 2, $count );
 	}
 
+	public function testCanGetSince(): void {
+		$hooks = $this->getFilters();
+		$hook = $hooks->find( 'wp_tag_cloud' );
+
+		$since = $hook->getDoc()->getSince();
+
+		self::assertSame( '2.3.0', $since );
+	}
+
 	/**
 	 * @return array<string, array<int, string>>
 	 * @phpstan-return array{

@@ -55,6 +55,22 @@ final class Tags implements \Countable, \IteratorAggregate {
 		return $this->getByType( 'param' );
 	}
 
+	public function getSince(): string {
+		foreach ( $this->tags as $tag ) {
+			if ( $tag->getName() === 'since' ) {
+				$since = $tag->getContent();
+
+				if ( strpos( $since, 'MU' ) !== false ) {
+					$since = '3.0.0';
+				}
+
+				return $since;
+			}
+		}
+
+		return '';
+	}
+
 	/**
 	 * @return array<int, Tag>
 	 * @phpstan-return list<Tag>
