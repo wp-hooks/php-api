@@ -10,10 +10,9 @@ namespace WPHooks;
  */
 final class Hooks implements \Countable, \IteratorAggregate {
 	/**
-	 * @var array
 	 * @phpstan-var HooksArray
 	 */
-	private $data;
+	private array $data;
 
 	public static function fromVendor( string $directory, string $file ): self {
 		return self::fromKnownFile( self::findFileFromVendor( $directory, $file ) );
@@ -79,9 +78,6 @@ final class Hooks implements \Countable, \IteratorAggregate {
 		return $hooks;
 	}
 
-	/**
-	 * @return ?Hook
-	 */
 	public function find( string $name ): ?Hook {
 		foreach ( $this->data as $hook ) {
 			if ( $hook['name'] === $name ) {

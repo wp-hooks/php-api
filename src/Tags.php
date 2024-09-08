@@ -13,7 +13,7 @@ final class Tags implements \Countable, \IteratorAggregate {
 	 * @var array<int, Tag>
 	 * @phpstan-var list<Tag>
 	 */
-	private $tags;
+	private array $tags;
 
 	/**
 	 * @phpstan-param TagsArray $data

@@ -13,25 +13,10 @@ namespace WPHooks;
  * }
  */
 final class Doc {
-	/**
-	 * @var string
-	 */
-	private $description;
-
-	/**
-	 * @var string
-	 */
-	private $long_description;
-
-	/**
-	 * @var string
-	 */
-	private $long_description_html;
-
-	/**
-	 * @var Tags
-	 */
-	private $tags;
+	private string $description;
+	private string $long_description;
+	private string $long_description_html;
+	private Tags $tags;
 
 	/**
 	 * @phpstan-param DocArray $data

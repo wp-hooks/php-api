@@ -16,37 +16,23 @@ namespace WPHooks;
  * }
  */
 final class Hook {
-	/**
-	 * @var string
-	 */
-	private $name;
+	private string $name;
 
 	/**
 	 * @var ?array<int, string>
 	 * @phpstan-var ?list<string>
 	 */
-	private $aliases;
+	private ?array $aliases;
+
+	private string $file;
 
 	/**
-	 * @var string
-	 */
-	private $file;
-
-	/**
-	 * @var string
 	 * @phpstan-var HookType
 	 */
-	private $type;
+	private string $type;
 
-	/**
-	 * @var Doc
-	 */
-	private $doc;
-
-	/**
-	 * @var int
-	 */
-	private $args;
+	private Doc $doc;
+	private int $args;
 
 	/**
 	 * @phpstan-param HookArray $data

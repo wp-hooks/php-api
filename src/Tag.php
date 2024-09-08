@@ -15,41 +15,19 @@ namespace WPHooks;
  * }
  */
 final class Tag {
-	/**
-	 * @var string
-	 */
-	private $name;
-
-	/**
-	 * @var string
-	 */
-	private $content;
+	private string $name;
+	private string $content;
 
 	/**
 	 * @var ?array<int, string>
 	 * @phpstan-var ?list<string>
 	 */
-	private $types;
+	private ?array $types;
 
-	/**
-	 * @var ?string
-	 */
-	private $variable;
-
-	/**
-	 * @var ?string
-	 */
-	private $link;
-
-	/**
-	 * @var ?string
-	 */
-	private $refers;
-
-	/**
-	 * @var ?string
-	 */
-	private $description;
+	private ?string $variable;
+	private ?string $link;
+	private ?string $refers;
+	private ?string $description;
 
 	/**
 	 * @phpstan-param TagArray $data
@@ -76,30 +54,18 @@ final class Tag {
 		return $this->types;
 	}
 
-	/**
-	 * @return ?string
-	 */
 	public function getVariable(): ?string {
 		return $this->variable;
 	}
 
-	/**
-	 * @return ?string
-	 */
 	public function getLink(): ?string {
 		return $this->link;
 	}
 
-	/**
-	 * @return ?string
-	 */
 	public function getRefers(): ?string {
 		return $this->refers;
 	}
 
-	/**
-	 * @return ?string
-	 */
 	public function getDescription(): ?string {
 		return $this->description;
 	}
