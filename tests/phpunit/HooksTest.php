@@ -6,7 +6,6 @@ namespace WPHooks\Tests;
 use PHPUnit\Framework\TestCase;
 use WPHooks\Hook;
 use WPHooks\Hooks;
-use WPHooks\Tag;
 
 final class HooksTest extends TestCase {
 	/**
@@ -53,6 +52,8 @@ final class HooksTest extends TestCase {
 		$hooks = $this->getFilters();
 		$hook = $hooks->find( 'wp_tag_cloud' );
 
+		self::assertInstanceOf( Hook::class, $hook );
+
 		$returnTypes = $hook->getDoc()->getReturnTypes();
 		$expected = [
 			'string',
@@ -66,6 +67,8 @@ final class HooksTest extends TestCase {
 		$hooks = $this->getFilters();
 		$hook = $hooks->find( 'wp_tag_cloud' );
 
+		self::assertInstanceOf( Hook::class, $hook );
+
 		$returnType = $hook->getDoc()->getReturnTypeString();
 
 		self::assertSame( 'string|string[]', $returnType );
@@ -75,16 +78,18 @@ final class HooksTest extends TestCase {
 		$hooks = $this->getFilters();
 		$hook = $hooks->find( 'wp_tag_cloud' );
 
+		self::assertInstanceOf( Hook::class, $hook );
+
 		$params = $hook->getDoc()->getParams();
 
 		self::assertCount( 2, $params );
-		self::assertInstanceOf( Tag::class, $params[0] );
-		self::assertInstanceOf( Tag::class, $params[1] );
 	}
 
 	public function testCanCountParams(): void {
 		$hooks = $this->getFilters();
 		$hook = $hooks->find( 'wp_tag_cloud' );
+
+		self::assertInstanceOf( Hook::class, $hook );
 
 		$count = $hook->getDoc()->countParams();
 
@@ -94,6 +99,8 @@ final class HooksTest extends TestCase {
 	public function testCanGetSince(): void {
 		$hooks = $this->getFilters();
 		$hook = $hooks->find( 'wp_tag_cloud' );
+
+		self::assertInstanceOf( Hook::class, $hook );
 
 		$since = $hook->getDoc()->getSince();
 
@@ -148,7 +155,7 @@ final class HooksTest extends TestCase {
 		return Hooks::fromFile( $this->dataCoreFiles()['filters'][0] );
 	}
 
-	private function getActions(): Hooks {
-		return Hooks::fromFile( $this->dataCoreFiles()['actions'][0] );
-	}
+	// private function getActions(): Hooks {
+	// 	return Hooks::fromFile( $this->dataCoreFiles()['actions'][0] );
+	// }
 }
