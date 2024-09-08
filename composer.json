@@ -25,6 +25,7 @@
 		"phpstan/phpstan": "1.12.2",
 		"phpstan/phpstan-phpunit": "1.4.0",
 		"phpstan/phpstan-strict-rules": "1.6.0",
+		"phpstan/phpstan-deprecation-rules": "1.2.0",
 		"wp-hooks/wordpress-core": "1.8.0",
 		"yoast/phpunit-polyfills": "^1.0"
 	},
