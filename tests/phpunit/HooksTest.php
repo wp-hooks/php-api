@@ -107,6 +107,17 @@ final class HooksTest extends TestCase {
 		self::assertSame( '2.3.0', $since );
 	}
 
+	function testCanGetSinceForMU(): void {
+		$hooks = $this->getFilters();
+		$hook = $hooks->find( 'wpmu_blogs_columns' );
+
+		self::assertInstanceOf( Hook::class, $hook );
+
+		$since = $hook->getDoc()->getSince();
+
+		self::assertSame( '3.0.0', $since );
+	}
+
 	/**
 	 * @return array<string, array<int, string>>
 	 * @phpstan-return array{
