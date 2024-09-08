@@ -55,6 +55,19 @@ final class Doc {
 	 * @phpstan-param DocArray $data
 	 */
 	private function setData( array $data ): self {
+		$required = [ 'description', 'long_description', 'long_description_html', 'tags' ];
+
+		foreach ( $required as $key ) {
+			if ( ! array_key_exists( $key, $data ) ) {
+				throw new \InvalidArgumentException(
+					sprintf(
+						'Missing required key "%s" in data array',
+						$key,
+					)
+				);
+			}
+		}
+
 		$this->description = $data['description'];
 		$this->long_description = $data['long_description'];
 		$this->long_description_html = $data['long_description_html'];

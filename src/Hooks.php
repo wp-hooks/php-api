@@ -19,11 +19,11 @@ final class Hooks implements \Countable, \IteratorAggregate {
 	}
 
 	/**
-	 * @throws \Exception
+	 * @throws \InvalidArgumentException
 	 */
 	public static function fromFile( string $file ): self {
 		if ( ! file_exists( $file ) ) {
-			throw new \Exception( sprintf(
+			throw new \InvalidArgumentException( sprintf(
 				'File does not exist: %s',
 				$file
 			) );
@@ -99,13 +99,13 @@ final class Hooks implements \Countable, \IteratorAggregate {
 	}
 
 	/**
-	 * @throws \Exception
+	 * @throws \ErrorException
 	 */
 	private static function fromKnownFile( string $file ): self {
 		$contents = file_get_contents( $file );
 
 		if ( $contents === false ) {
-			throw new \Exception( sprintf(
+			throw new \ErrorException( sprintf(
 				'Could not open hook file: %s',
 				$file
 			) );
@@ -114,7 +114,7 @@ final class Hooks implements \Countable, \IteratorAggregate {
 		$decoded = json_decode( $contents, true );
 
 		if ( ! is_array( $decoded ) || ! isset( $decoded['hooks'] ) || ! is_array( $decoded['hooks'] ) ) {
-			throw new \Exception( sprintf(
+			throw new \ErrorException( sprintf(
 				'Unexpected data format in file: %s',
 				$file
 			) );
@@ -126,7 +126,7 @@ final class Hooks implements \Countable, \IteratorAggregate {
 	}
 
 	/**
-	 * @throws \Exception
+	 * @throws \InvalidArgumentException
 	 */
 	private static function findFileFromVendor( string $directory, string $path ): string {
 		$library_dependency = $directory . '/vendor/' . $path;
@@ -141,7 +141,7 @@ final class Hooks implements \Countable, \IteratorAggregate {
 			return $project_dependency;
 		}
 
-		throw new \Exception( sprintf(
+		throw new \InvalidArgumentException( sprintf(
 			'Vendor directory not found for file: %s',
 			$path
 		) );

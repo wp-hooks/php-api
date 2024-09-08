@@ -74,6 +74,18 @@ final class Tag {
 	 * @phpstan-param TagArray $data
 	 */
 	private function setData( array $data ): self {
+		$required = [ 'name', 'content' ];
+		foreach ( $required as $key ) {
+			if ( ! array_key_exists( $key, $data ) ) {
+				throw new \InvalidArgumentException(
+					sprintf(
+						'Missing required key "%s" in data array',
+						$key,
+					)
+				);
+			}
+		}
+
 		$this->name = $data['name'];
 		$this->content = $data['content'];
 		$this->types = $data['types'] ?? null;

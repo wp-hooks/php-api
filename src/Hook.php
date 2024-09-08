@@ -83,6 +83,19 @@ final class Hook {
 	 * @phpstan-param HookArray $data
 	 */
 	private function setData( array $data ): self {
+		$required = [ 'name', 'file', 'type', 'doc', 'args' ];
+
+		foreach ( $required as $key ) {
+			if ( ! array_key_exists( $key, $data ) ) {
+				throw new \InvalidArgumentException(
+					sprintf(
+						'Missing required key "%s" in data array',
+						$key,
+					)
+				);
+			}
+		}
+
 		$this->name = $data['name'];
 		$this->aliases = $data['aliases'] ?? null;
 		$this->file = $data['file'];
